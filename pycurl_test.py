@@ -10,4 +10,6 @@ c.perform()
 c.close()
 
 body = buffer.getvalue().decode('utf-8')
-print(body)
+# print(body)
+match = re.search('https(.*)', body)
+print(match)
