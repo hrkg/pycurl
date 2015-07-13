@@ -11,5 +11,8 @@ c.close()
 
 body = buffer.getvalue().decode('utf-8')
 # print(body)
-match = re.search('https(.*)', body)
+# match = re.search('https(.*)', body)
+#pattern = re.compile(r'http(.*)$')
+re.MULTILINE
+match = re.findall("http[s]?://[\w]+\.", body)
 print(match)
