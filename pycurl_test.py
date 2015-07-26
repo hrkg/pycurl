@@ -1,6 +1,12 @@
 import re
 import pycurl
 from io import BytesIO
+from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        print("start tag ", tag)
+        print("attrs tag ", attrs)
 
 c = pycurl.Curl()
 c.setopt(c.URL, "http://www.yahoo.co.jp")
@@ -13,6 +19,9 @@ body = buffer.getvalue().decode('utf-8')
 # print(body)
 # match = re.search('https(.*)', body)
 #pattern = re.compile(r'http(.*)$')
-re.MULTILINE
-match = re.findall("http[s]?://[\w\.]+", body)
-print(match)
+#re.MULTILINE
+#match = re.findall("http[s]?://[\w\.]+", body)
+#print(match)
+
+parser = MyHTMLParser() 
+parser.feed(body)
