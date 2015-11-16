@@ -1,5 +1,6 @@
 import re
 import pycurl
+import wget
 
 from io import BytesIO
 from html.parser import HTMLParser
@@ -16,12 +17,12 @@ class MyHTMLParser(HTMLParser):
                 break
             if (re.compile('http').search(attr[1])):
                 # jpg jpeg png bmp に一致するURLのみ処理を行うようにする
-                print(attr[1])
-                # wgetで取得特定のディレクトリ以下に保存する
+                if (re.compile(r'(jpg|jpeg|png|bmp)$').search(attr[1])):
+                    print(attr[1])
+                    # wgetで取得特定のディレクトリ以下に保存する
+                    url = attr[1]
+                    filename = wget.download(url,'./pictures/')
 
-        
-        print('HEY')
-        
     def return_dictionary(self):
         return self.dictionary
     
