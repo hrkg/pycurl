@@ -1,6 +1,7 @@
 import re
 import pycurl
 import wget
+import sys
 
 from io import BytesIO
 from html.parser import HTMLParser
@@ -28,7 +29,7 @@ class MyHTMLParser(HTMLParser):
     
 
 c = pycurl.Curl()
-c.setopt(c.URL, "http://www.yahoo.co.jp")
+c.setopt(c.URL, sys.argv[1])
 
 buffer = BytesIO()
 c.setopt(c.WRITEDATA, buffer)
