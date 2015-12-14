@@ -10,6 +10,10 @@ class MyCurl:
     def set_url(url):
         MyCurl.curl.setopt(MyCurl.curl.URL, url)
 
+    def set_buffer(buffer):
+        MyCurl.curl.setopt(MyCurl.curl.WRITEDATA, buffer)
+        return buffer
+
     def exec():
         MyCurl.curl.perform()
 

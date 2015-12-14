@@ -1,7 +1,7 @@
 from MyHTMLParser import MyHTMLParser
 from MyCurl       import MyCurl
-from MyBuffer     import MyBuffer
 from MyBody       import MyBody
+from io           import BytesIO
 import sys
 
 
@@ -9,17 +9,14 @@ import sys
 curl = MyCurl()
 curl.set_url(sys.argv[1])
 
-buffer = MyBuffer()
-curl = buffer.set_write_setting(curl)
+buffer = BytesIO()
+
+buffer = curl.set_buffer(buffer)
 
 curl.exec()
 curl.close()
 
-body = MyBody
-
-body = buffer.get_value(body)
-
+body = buffer.getvalue().decode('utf-8')
 
 parser = MyHTMLParser() 
 parser.feed(body)
-

@@ -6,9 +6,6 @@ from html.parser import HTMLParser
 
 class MyHTMLParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
-        return attrs;
-
-
         if (len(attrs) == 0):
             return
 
