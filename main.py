@@ -10,7 +10,6 @@ curl = MyCurl()
 curl.set_url(sys.argv[1])
 
 buffer = BytesIO()
-
 buffer = curl.set_buffer(buffer)
 
 curl.exec()
