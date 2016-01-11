@@ -11,6 +11,10 @@ class MyHTMLParser(HTMLParser):
         if (len(attrs) == 0):
             return
 
+        self.getLinks(attrs)
+
+    def getLinks(self, attrs):
+
         for attr in attrs:
 
             if (attr[1] is None):
@@ -20,14 +24,14 @@ class MyHTMLParser(HTMLParser):
                 self.checkExtension(attr[1])
 
     def checkExtension(self, url):
+
         # jpg jpeg png bmp に一致するURLのみ処理を行うようにする
         if (re.compile(r'(jpg|jpeg|png|bmp)$').search(url)):
             print(url)
             self.download(url)
-        self.collectLink(url)
-
 
     def download(self, url):
+
         # wgetで取得特定のディレクトリ以下に保存する
         filename = wget.download(url,'./pictures/')
 

@@ -2,7 +2,8 @@ from MyHTMLParser import MyHTMLParser
 from MyCurl       import MyCurl
 from MyBody       import MyBody
 from io           import BytesIO
-import sys
+from MyUriEncode  import MyUriEncode
+import urllib.parse
 
 class Facade:
 
@@ -10,8 +11,9 @@ class Facade:
         return cls
 
     def downloadPictures():
+
         curl = MyCurl()
-        curl.set_url(sys.argv[1])
+        curl.set_url(MyUriEncode.getUrl())
         
         buffer = BytesIO()
         buffer = curl.set_buffer(buffer)
